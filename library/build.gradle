@@ -31,6 +31,11 @@ dependencies {
     compile 'com.squareup.okhttp3:okhttp:3.4.1'
     compile 'com.squareup.okio:okio:1.9.0'
 }
+task javadoc(type: Javadoc) {
+    source = android.sourceSets.main.java.srcDirs
+    classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
+    options.encoding = "UTF-8"
+}
 ext {
     PUBLISH_GROUP_ID = 'com.smartTop'
     PUBLISH_ARTIFACT_ID = 'version-update'

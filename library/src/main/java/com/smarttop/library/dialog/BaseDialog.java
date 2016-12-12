@@ -3,8 +3,6 @@ package com.smarttop.library.dialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.FragmentActivity;
 import android.util.DisplayMetrics;
@@ -39,7 +37,6 @@ public class BaseDialog extends DialogFragment implements DialogInterface.OnDism
     private double dialog_width_ratio;
     private double dialog_height_ratio;
 
-    @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         contentView = inflater.inflate(this.resId, container, false);
@@ -49,7 +46,6 @@ public class BaseDialog extends DialogFragment implements DialogInterface.OnDism
         return contentView;
     }
 
-    @NonNull
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         mDialog = new Dialog(getActivity(), R.style.Dialog);

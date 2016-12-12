@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Environment;
 import android.os.Handler;
 import android.os.Message;
 import android.widget.TextView;
@@ -33,7 +34,6 @@ import okhttp3.Response;
  * @auther smartTop
  * @date 2016/4/27 0027 18:15
  * @qq 1531370695
- * @describe 文件下载工具类 基于okhttp
  */
 public class OkUtils {
     private Activity activity;
@@ -48,11 +48,10 @@ public class OkUtils {
     private String mAppName; // 下载到本地给这个APP命名
     private Thread downLoadThread;
     private Runnable mdownApkRunnable;
-//    private static final String savePath = "/sdcard/congmingtou/";
-    private static final String savePath = FileUtil.SDPATH + File.separator + FileUtil.PATH + File.separator;
+    public static final String path = Environment.getExternalStorageDirectory().getAbsolutePath();
+    private static final String savePath = path + File.separator + "versionupdate" + File.separator;
     private static final String saveFileName = savePath+ "versionupdate.apk";
-    private boolean interceptFlag = false;
-    private String str_Url = "";
+    private boolean interceptFlag = false;    private String str_Url = "";
     private Handler handler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
@@ -74,13 +73,12 @@ public class OkUtils {
         mProgressDlg = new ProgressDialog(activity);
         mProgressDlg.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
         mProgressDlg.setIndeterminate(false);
-        mAppName = "naiping.apk";
+        mAppName = "versionupdate.apk";
     }
 
     public void downFile(String url) {
         mProgressDlg.setTitle("正在下载");
-        mProgressDlg.setMessage("请稍候...");
-        //设置点击进度对话框外的区域对话框不消失
+        mProgressDlg.setMessage("请稍后...");
         mProgressDlg.setCanceledOnTouchOutside(false);
         mProgressDlg.show();
         downLoadThread = new Thread(mdownApkRunnable);
