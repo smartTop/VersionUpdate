@@ -1,6 +1,8 @@
 # VersionUpdate
 
 一个 Android 版软件更新功能的工具类
+
+
      ![image](https://github.com/smartTop/AddressSelector/blob/master/screenshots/screenshot1.gif)
 ## 添加依赖
 
