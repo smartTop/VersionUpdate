@@ -3,6 +3,7 @@
 一个 Android 版软件更新功能的工具类
 
      ![image](https://github.com/smartTop/VersionUpdate/blob/master/screenshots/screenshort1.gif)
+
 ## 添加依赖
 
 在`build.gradle` 中：
@@ -19,6 +20,7 @@
    默认布局
 
     ![image](https://github.com/smartTop/VersionUpdate/blob/master/screenshots/screenshort3.png)
+
 
     AddressSelector selector = new AddressSelector(context);
     selector.setOnAddressSelectedListener(new AddressSelector.OnAddressSelectedListener() {
