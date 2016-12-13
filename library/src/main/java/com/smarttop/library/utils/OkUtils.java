@@ -4,11 +4,10 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.net.Uri;
-import android.os.Environment;
 import android.os.Handler;
 import android.os.Message;
+import android.util.Log;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.smarttop.library.callback.CallBackForT;
 import com.smarttop.library.dialog.VersionUpdateDialog;
@@ -49,10 +48,10 @@ public class OkUtils {
     private String mAppName; // 下载到本地给这个APP命名
     private Thread downLoadThread;
     private Runnable mdownApkRunnable;
-    public static final String path = Environment.getExternalStorageDirectory().getAbsolutePath();
-    private static final String savePath = path + File.separator + "versionupdate" + File.separator;
+    private static final String savePath = FileUtil.SDPATH + File.separator + FileUtil.PATH + File.separator;
     private static final String saveFileName = savePath+ "versionupdate.apk";
-    private boolean interceptFlag = false;    private String str_Url = "";
+    private boolean interceptFlag = false;
+    private String str_Url = "";
     private Handler handler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
@@ -79,7 +78,7 @@ public class OkUtils {
 
     public void downFile(String url) {
         mProgressDlg.setTitle("正在下载");
-        mProgressDlg.setMessage("请稍后...");
+        mProgressDlg.setMessage("请稍候...");
         //设置点击进度对话框外的区域对话框不消失
         mProgressDlg.setCanceledOnTouchOutside(false);
         mProgressDlg.show();
@@ -184,7 +183,8 @@ public class OkUtils {
         call.enqueue(new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
-                Toast.makeText(activity, "网络请求出错", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(activity, "网络请求出错", Toast.LENGTH_SHORT).show();
+                Log.d("数据","网络请求出错");
             }
 
             @Override

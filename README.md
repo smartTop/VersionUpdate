@@ -3,7 +3,7 @@
 一个 Android 版软件更新功能的工具类
 
 
-     ![image](https://github.com/smartTop/AddressSelector/blob/master/screenshots/screenshot1.gif)
+     ![image](https://github.com/smartTop/AddressSelector/blob/master/screenshots/screenshort1.gif)
 ## 添加依赖
 
 在`build.gradle` 中：

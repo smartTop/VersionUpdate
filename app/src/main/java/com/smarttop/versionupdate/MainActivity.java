@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         versionUpdateBean.versionStatus = "2";//1:不需要更新 2：建议更新 3：强制更新
 //        versionUpdateBean.versionStatus = "3";//强制更新
         versionUpdateBean.versionDesc = "请关注:\n1.smartTop的github\n 2.记得点赞"; //描述
-        versionUpdateBean.url = "https://github.com/smartTop/VersionUpdate/blob/master/dowanloadapk/app-release.apk";
+        versionUpdateBean.url = "http://192.168.5.190:8080/versionupdate.apk";
         setVersionInfo(versionUpdateBean);
     }
     public void setVersionInfo(VersionUpdateBean obj) {
