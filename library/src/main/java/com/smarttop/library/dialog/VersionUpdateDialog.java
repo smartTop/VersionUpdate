@@ -3,6 +3,7 @@ package com.smarttop.library.dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.support.v4.app.FragmentActivity;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.View;
@@ -98,7 +99,7 @@ public class VersionUpdateDialog extends BaseDialog implements BaseDialog.OnCrea
             btn_Cancel = (TextView)view.findViewById(cancleId);
         }
         if(sureId==0){
-            btn_Sure = (TextView)view.findViewById(R.id.tv_update_cancel);
+            btn_Sure = (TextView)view.findViewById(R.id.tv_update_sure);
         }else{
             btn_Sure = (TextView)view.findViewById(sureId);
         }
@@ -145,8 +146,9 @@ public class VersionUpdateDialog extends BaseDialog implements BaseDialog.OnCrea
     @Override
     public void onClick(View v) {
         int id = v.getId();
+        Log.d("数据","cancleId==0"+(cancleId==0));
+        Log.d("数据","sureId==0"+(sureId==0));
         if(cancleId==0){
-
             if(id == R.id.tv_update_cancel){
                 this.dismiss();
             }
@@ -157,6 +159,7 @@ public class VersionUpdateDialog extends BaseDialog implements BaseDialog.OnCrea
         }
         if(sureId==0){
             if(id  == R.id.tv_update_sure){
+                Log.d("数据",str_Url);
                 sure();
             }
         }else{
@@ -173,7 +176,7 @@ public class VersionUpdateDialog extends BaseDialog implements BaseDialog.OnCrea
         if (NetworkProber.getInstance().isNetworkAvailable(getActivity())) {
             btn_Sure.setClickable(false);
             btn_Cancel.setClickable(false);
-
+            Log.d("数据",str_Url);
             mOkUtils.downFile(str_Url, new CallBackForT<Response>() {
                 @Override
                 public void finish(Response response) {
