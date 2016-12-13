@@ -17,15 +17,21 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         tv_update = (TextView) findViewById(R.id.tv_update);
         tv_update.setOnClickListener(this);
         VersionUpdateDialog instance = VersionUpdateDialog.getInstance();
-        instance.setUpdateView(R.layout.dialog_version_update);
+        //设置自定义布局
+//        instance.setUpdateView(R.layout.dialog_update);//设置自定义布局
+//        instance.setCancleOnclick(R.id.btn_cancle);//设置取消监听
+//        instance.setSureOnclick(R.id.btn_sure);//设置确定监听
         instance.initialize(this);/*版本升级Dialog 【MQ】*/
+
 
     }
 
     @Override
     public void onClick(View view) {
+        //这里是测试数据，在真正的项目中这些数据都是后台给配置的
         VersionUpdateBean versionUpdateBean = new VersionUpdateBean();
         versionUpdateBean.versionStatus = "2";//1:不需要更新 2：建议更新 3：强制更新
+//        versionUpdateBean.versionStatus = "3";//强制更新
         versionUpdateBean.versionDesc = "请关注:\n1.smartTop的github\n 2.记得点赞"; //描述
         versionUpdateBean.url = "https://github.com/smartTop/VersionUpdate";
         setVersionInfo(versionUpdateBean);

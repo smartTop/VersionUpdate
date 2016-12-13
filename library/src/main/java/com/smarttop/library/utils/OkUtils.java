@@ -33,7 +33,8 @@ import okhttp3.Response;
 /**
  * @auther smartTop
  * @date 2016/4/27 0027 18:15
- * @qq 1531370695
+ * @qq 1273436145
+ * @describe 文件下载工具类 基于okhttp
  */
 public class OkUtils {
     private Activity activity;
@@ -79,6 +80,7 @@ public class OkUtils {
     public void downFile(String url) {
         mProgressDlg.setTitle("正在下载");
         mProgressDlg.setMessage("请稍后...");
+        //设置点击进度对话框外的区域对话框不消失
         mProgressDlg.setCanceledOnTouchOutside(false);
         mProgressDlg.show();
         downLoadThread = new Thread(mdownApkRunnable);

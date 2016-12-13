@@ -2,7 +2,6 @@ package com.smarttop.library.bean;
 
 /**
  * Created by smarTop on 2016/6/28.
- * 版本更新实体类
  */
 public class VersionUpdateBean {
     public String versionDesc;// 描述
