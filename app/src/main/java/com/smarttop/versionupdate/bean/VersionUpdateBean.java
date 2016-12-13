@@ -1,4 +1,4 @@
-package com.smarttop.library.bean;
+package com.smarttop.versionupdate.bean;
 
 /**
  * Created by smarTop on 2016/6/28.

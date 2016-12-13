@@ -5,8 +5,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.TextView;
 
-import com.smarttop.library.bean.VersionUpdateBean;
 import com.smarttop.library.dialog.VersionUpdateDialog;
+import com.smarttop.versionupdate.bean.VersionUpdateBean;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     private TextView tv_update;
