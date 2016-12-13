@@ -19,6 +19,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         VersionUpdateDialog instance = VersionUpdateDialog.getInstance();
         //设置自定义布局
 //        instance.setUpdateView(R.layout.dialog_update);//设置自定义布局
+//          instance.setDescribe(R.id.tv_dia_version_update);//设置更新的描述
 //        instance.setCancleOnclick(R.id.btn_cancle);//设置取消监听
 //        instance.setSureOnclick(R.id.btn_sure);//设置确定监听
         instance.initialize(this);/*版本升级Dialog 【MQ】*/

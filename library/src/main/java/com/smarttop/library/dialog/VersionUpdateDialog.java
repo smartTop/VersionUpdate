@@ -41,6 +41,7 @@ public class VersionUpdateDialog extends BaseDialog implements BaseDialog.OnCrea
     private int resId;
     private int cancleId;
     private int sureId;
+    private int desId;
 
     public VersionUpdateDialog() {
     }
@@ -89,9 +90,21 @@ public class VersionUpdateDialog extends BaseDialog implements BaseDialog.OnCrea
     public void setSureOnclick(int sureId){
         this.sureId = sureId;
     }
+
+    /**
+     * 设置描述
+     */
+    public void setDescribe(int desId){
+        this.desId = desId;
+    }
+
     @Override
     public void onCreateViewOk(View view) {
-        tv_Prompt = (TextView) view.findViewById(R.id.tv_dia_version_update);
+        if(desId==0){
+            tv_Prompt = (TextView) view.findViewById(R.id.tv_dia_version_update);
+        }else{
+            tv_Prompt = (TextView) view.findViewById(desId);
+        }
         if(cancleId ==0){
             btn_Cancel = (TextView) view.findViewById(R.id.tv_update_cancel);
         }else{

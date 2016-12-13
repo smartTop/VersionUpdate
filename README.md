@@ -2,6 +2,7 @@
 
 一个 Android 版软件更新功能的工具类
 
+
      ![image](https://github.com/smartTop/VersionUpdate/blob/master/screenshots/screenshort1.gif)
 
 ## 添加依赖
@@ -19,61 +20,27 @@
 
    默认布局
 
+
+
     ![image](https://github.com/smartTop/VersionUpdate/blob/master/screenshots/screenshort3.png)
 
 
-    AddressSelector selector = new AddressSelector(context);
-    selector.setOnAddressSelectedListener(new AddressSelector.OnAddressSelectedListener() {
-        @Override
-        public void onAddressSelected(Province province, City city, County county, Street street) {
-            // blahblahblah
-        }
-    });
-            
-    View view = selector.getView();
-    content.addView(view);
-### BottomDialog
+      还可以使用自定义布局
 
-    BottomDialog dialog = new BottomDialog(context);
-    dialog.setOnAddressSelectedListener(listener);
-    dialog.show();
-###
-有朋友问，怎么使用自己的数据源，这里我说明一下，因为我的数据库里的地址表，省，市，区，县，镇，都是用同一个表，根据parentId来查询的。
+       VersionUpdateDialog instance = VersionUpdateDialog.getInstance();
 
-想用自己的数据源，就需要把自己的数据源里，各个字段与我的数据源里字段一一对应(id, parentId, code, name),分别对应的中文意思(id,父id(可根据父id查询下一级),地址编码,中文名字)
+        //设置自定义布局
+        instance.setUpdateView(R.layout.dialog_update);//设置自定义布局
 
-然后在你的项目里的assets目录下，放上你的数据库，名字一定是"address.db".
+        instance.setDescribe(R.id.tv_dia_version_update);//设置更新的描述
 
-    如果你用的是android studio 应该放在
- ![image](https://github.com/smartTop/AddressSelector/blob/master/screenshots/screenshort2.png)
-###
-在源数据库里要添加一个数据
- AdressBean.ChangeRecordsBean changeRecordsBean = new AdressBean.ChangeRecordsBean();
+        instance.setCancleOnclick(R.id.btn_cancle);//设置取消监听
 
-        changeRecordsBean.parentId = 0;
+        instance.setSureOnclick(R.id.btn_sure);//设置确定监听
 
-        changeRecordsBean.name = "测试省";
+        instance.initialize(this);/*版本升级Dialog 【MQ】*/
 
-        changeRecordsBean.id = 35;
 
-        addressDictManager.inserddress(changeRecordsBean);
-![image](https://github.com/smartTop/AddressSelector/blob/master/screenshots/screenshort3.png)
-###
- 还可以进行已下操作 增加一个数据 inserddress(AdressBean.ChangeRecordsBean adress)  增加一个集合insertAddress(List<AdressBean.ChangeRecordsBean> list)
-
- 更新数据 updateAddressInfo(AdressBean.ChangeRecordsBean adress)
-
- 查找数据 getAddressList()
-
- 获取省市列表 getProvinceList()
-
- 根据省市id 获取城市列表 getCityList(int  provinceId)
-
- 获取城市对应的区，乡镇列表 getCountyList(int cityId)
-
- 获取区，乡镇对应的街道列表 getStreetList(int countyId)
-
-  查找消息临时列表中是否存在这一条记录  isExist()
 ## 关于我
 
 **smartTop**
