@@ -11,6 +11,8 @@
     dependencies {
         ...
       compile 'com.smartTop:version-update:1.0.0'
+
+
     }
     
 ## 使用方法
