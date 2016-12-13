@@ -9,6 +9,8 @@
 在`build.gradle` 中：
 
     dependencies {
+
+
         ...
       compile 'com.smartTop:version-update:1.0.0'
 
