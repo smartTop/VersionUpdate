@@ -47,24 +47,32 @@
 
                     versionUpdateBean.versionStatus = "2";//1:不需要更新 2：建议更新 3：强制更新
 
-            //        versionUpdateBean.versionStatus = "3";//强制更新
+            //      versionUpdateBean.versionStatus = "3";//强制更新
 
                     versionUpdateBean.versionDesc = "请关注:\n1.smartTop的github\n 2.记得点赞"; //描述
 
                     versionUpdateBean.url = "http://192.168.5.190:8080/versionupdate.apk";
 
+                    setVersionInfo(versionUpdateBean);
+
          public void setVersionInfo(VersionUpdateBean obj) {
 
-        int status = -1;
+                int status = -1;
 
-        if (obj != null) {
-//			1:不需要更新 2：建议更新 3：强制更新
-            if (obj.versionStatus != null) {
-                status = Integer.parseInt(obj.versionStatus);
-            }
-            if (status == 2 || status == 3) {
-                VersionUpdateDialog.getInstance().showDialog(obj.url, obj.versionDesc, status);
-            }
+                if (obj != null) {
+
+                //1:不需要更新 2：建议更新 3：强制更新
+                if (obj.versionStatus != null) {
+
+                    status = Integer.parseInt(obj.versionStatus);
+
+                }
+
+                if (status == 2 || status == 3) {
+
+                    VersionUpdateDialog.getInstance().showDialog(obj.url, obj.versionDesc, status);
+
+                }
         }
 
 
