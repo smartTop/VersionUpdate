@@ -16,12 +16,6 @@
     
 ## 使用方法
 
-   默认布局
-    ![image](https://github.com/smartTop/VersionUpdate/blob/master/screenshots/screenshort3.png)
-
-
-
-
         使用默认布局
          VersionUpdateDialog.getInstance().initialize(this);
 
@@ -75,7 +69,9 @@
                 }
         }
 
+ 默认布局的动态效果图
 
+    ![image](https://github.com/smartTop/VersionUpdate/blob/master/screenshots/screenshort3.png)
 
 ## 关于我
 
