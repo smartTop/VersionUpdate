@@ -70,8 +70,8 @@
         }
 
  默认布局的动态效果图
-
     ![image](https://github.com/smartTop/VersionUpdate/blob/master/screenshots/screenshort3.png)
+
 
 ## 关于我
 
