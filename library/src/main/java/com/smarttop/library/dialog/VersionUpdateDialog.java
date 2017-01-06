@@ -4,11 +4,11 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.support.v4.app.FragmentActivity;
 import android.view.Gravity;
-import android.view.KeyEvent;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.smarttop.library.Effectstype;
 import com.smarttop.library.R;
 import com.smarttop.library.callback.CallBackForT;
 import com.smarttop.library.utils.NetworkProber;
@@ -42,6 +42,9 @@ public class VersionUpdateDialog extends BaseDialog implements BaseDialog.OnCrea
     private int cancleId;
     private int sureId;
     private int desId;
+    private int rootId;
+    private Effectstype type = null;
+    private View rootView;
 
     public VersionUpdateDialog() {
     }
@@ -59,8 +62,6 @@ public class VersionUpdateDialog extends BaseDialog implements BaseDialog.OnCrea
     }
 
     private void setUpDialog() {
-        setWindowAnimations(R.style.AnimUpInDownOut);
-        setContentView(R.layout.dialog_version_update, this);
         if(resId ==0){
             setContentView(R.layout.dialog_version_update, this);
         }else{
@@ -70,6 +71,15 @@ public class VersionUpdateDialog extends BaseDialog implements BaseDialog.OnCrea
         setDimAmount(0.4f);
     }
 
+    /**
+     * 设置动画
+     * @param type
+     */
+    public void withEffect( Effectstype type){
+        this.type=type;
+        setWindowAnimations(type);
+
+    }
     /**
      * 设置更新的自定义布局
      */
@@ -98,44 +108,56 @@ public class VersionUpdateDialog extends BaseDialog implements BaseDialog.OnCrea
         this.desId = desId;
     }
 
-    @Override
-    public void onCreateViewOk(View view) {
-        if(desId==0){
-            tv_Prompt = (TextView) view.findViewById(R.id.tv_dia_version_update);
-        }else{
-            tv_Prompt = (TextView) view.findViewById(desId);
-        }
-        if(cancleId ==0){
-            btn_Cancel = (TextView) view.findViewById(R.id.tv_update_cancel);
-        }else{
-            btn_Cancel = (TextView)view.findViewById(cancleId);
-        }
-        if(sureId==0){
-            btn_Sure = (TextView)view.findViewById(R.id.tv_update_sure);
-        }else{
-            btn_Sure = (TextView)view.findViewById(sureId);
-        }
-        mOkUtils = new OkUtils(getActivity(), tv_Prompt);
-        tv_Prompt.setText(mPrompt);
-        btn_Sure.setOnClickListener(this);
-        btn_Cancel.setOnClickListener(this);
-        //强制更新
-        if (mForceUp == 3) {
-            btn_Cancel.setVisibility(View.GONE);
-            btn_Sure.setGravity(Gravity.CENTER);
-            this.getDialog().setOnKeyListener(new DialogInterface.OnKeyListener() {
-                @Override
-                public boolean onKey(DialogInterface dialog, int keyCode, KeyEvent event) {
-                    if (keyCode == KeyEvent.KEYCODE_BACK) {
-                        return true;
-                    }
-                    return false;
-                }
-            });
-        }
-        instance.setCanceledOnTouchOutSide(false);
+    /**
+     * 设置根布局的id
+     */
+    public void setRootViewId(int rootId){
+            this.rootId = rootId;
     }
 
+    @Override
+    public void onCreateViewOk(View view) {
+//        if(desId==0){
+//            tv_Prompt = (TextView) view.findViewById(R.id.tv_dia_version_update);
+//        }else{
+//            tv_Prompt = (TextView) view.findViewById(desId);
+//        }
+//        if(cancleId ==0){
+//            btn_Cancel = (TextView) view.findViewById(R.id.tv_update_cancel);
+//        }else{
+//            btn_Cancel = (TextView)view.findViewById(cancleId);
+//        }
+//        if(sureId==0){
+//            btn_Sure = (TextView)view.findViewById(R.id.tv_update_sure);
+//        }else{
+//            btn_Sure = (TextView)view.findViewById(sureId);
+//        }
+//        if(rootId==0){
+//            rootView = view.findViewById(R.id.main);
+//        }else{
+//            rootView = view.findViewById(rootId);
+//        }
+//        mOkUtils = new OkUtils(getActivity(), tv_Prompt);
+//        tv_Prompt.setText(mPrompt);
+//        btn_Sure.setOnClickListener(this);
+//        btn_Cancel.setOnClickListener(this);
+//        //强制更新
+//        if (mForceUp == 3) {
+//            btn_Cancel.setVisibility(View.GONE);
+//            btn_Sure.setGravity(Gravity.CENTER);
+//            this.getDialog().setOnKeyListener(new DialogInterface.OnKeyListener() {
+//                @Override
+//                public boolean onKey(DialogInterface dialog, int keyCode, KeyEvent event) {
+//                    if (keyCode == KeyEvent.KEYCODE_BACK) {
+//                        return true;
+//                    }
+//                    return false;
+//                }
+//            });
+//        }
+//        instance.setCanceledOnTouchOutSide(false);
+//        setRootView(rootView);
+    }
     /**
      * 展示Dialog
      *
@@ -157,25 +179,25 @@ public class VersionUpdateDialog extends BaseDialog implements BaseDialog.OnCrea
 
     @Override
     public void onClick(View v) {
-        int id = v.getId();
-        if(cancleId==0){
-            if(id == R.id.tv_update_cancel){
-                this.dismiss();
-            }
-        }else{
-            if(id == cancleId){
-                this.dismiss();
-            }
-        }
-        if(sureId==0){
-            if(id  == R.id.tv_update_sure){
-                sure();
-            }
-        }else{
-            if(id  == sureId){
-                sure();
-            }
-        }
+//        int id = v.getId();
+//        if(cancleId==0){
+//            if(id == R.id.tv_update_cancel){
+//                this.dismiss();
+//            }
+//        }else{
+//            if(id == cancleId){
+//                this.dismiss();
+//            }
+//        }
+//        if(sureId==0){
+//            if(id  == R.id.tv_update_sure){
+//                sure();
+//            }
+//        }else{
+//            if(id  == sureId){
+//                sure();
+//            }
+//        }
     }
 
     /**

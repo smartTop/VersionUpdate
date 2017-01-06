@@ -1,79 +1,128 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@drawable/dialog_bg_version_update"
-    android:gravity="center"
-    android:orientation="vertical">
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="14dp"
-        android:text="检测到新版本"
-        android:textColor="#ff5a3f"
-        android:textSize="15sp"
-        android:textStyle="bold" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="left"
-        android:layout_marginLeft="35dp"
-        android:layout_marginTop="14dp"
-        android:text="更新内容"
-        android:textColor="#222222"
-        android:textSize="12sp" />
-
-    <TextView
-        android:id="@+id/tv_dia_version_update"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp"
-        android:layout_marginTop="30dp"
-        android:lineSpacingExtra="5dp"
-        android:textColor="#828282"
-        android:textSize="14sp" />
+    >
 
     <LinearLayout
+        android:id="@+id/parentPanel"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="30dp"
-        android:layout_marginLeft="35dp"
-        android:layout_marginRight="35dp"
-        android:layout_marginTop="26dp"
-        android:gravity="center"
-        android:orientation="horizontal">
+        android:layout_centerInParent="true"
+        android:clickable="false"
+        android:orientation="vertical"
+        android:visibility="visible">
 
-        <Button
-            android:id="@+id/tv_update_cancel"
-            android:layout_width="wrap_content"
-            android:layout_height="40dp"
-            android:layout_marginRight="25dp"
-            android:layout_weight="1"
-            android:background="@drawable/selector_update_btn"
-            android:minEms="5"
-            android:text="暂不更新"
-            android:textColor="#ff5a3f"
-            android:textSize="15sp" />
 
+        <LinearLayout
+            android:id="@+id/topPanel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/alertTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="14dp"
+                android:text="检测到新版本"
+                android:textColor="#ff5a3f"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/contentPanel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:layout_marginLeft="35dp"
+                android:layout_marginTop="14dp"
+                android:text="更新内容"
+                android:textColor="#222222"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/message"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:layout_marginTop="30dp"
+                android:lineSpacingExtra="5dp"
+                android:textColor="#828282"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="30dp"
+            android:layout_marginLeft="35dp"
+            android:layout_marginRight="35dp"
+            android:layout_marginTop="26dp"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/button1"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_marginRight="25dp"
+                android:layout_weight="1"
+                android:background="@drawable/selector_update_btn"
+                android:minEms="5"
+                android:textColor="#ff5a3f"
+                android:textSize="15sp" />
+
+            <Button
+                android:id="@+id/button2"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_weight="1"
+                android:background="@drawable/selector_update_btn2"
+                android:minEms="5"
+                android:textColor="#fff"
+                android:textSize="19sp"
+                tools:ignore="ButtonStyle" />
+
+        </LinearLayout>
         <Button
-            android:id="@+id/tv_update_sure"
-            android:layout_width="wrap_content"
+            android:id="@+id/button3"
+            android:layout_width="match_parent"
             android:layout_height="40dp"
-            android:layout_weight="1"
             android:background="@drawable/selector_update_btn2"
             android:minEms="5"
-            android:text="软件更新"
+            android:layout_marginBottom="30dp"
+            android:layout_marginTop="26dp"
+            android:layout_gravity="center"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
             android:textColor="#fff"
             android:textSize="19sp"
+            android:visibility="gone"
             tools:ignore="ButtonStyle" />
-
     </LinearLayout>
 
+    <FrameLayout
+        android:id="@+id/customPanel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:visibility="gone"></FrameLayout>
 
-</LinearLayout>
+</RelativeLayout>

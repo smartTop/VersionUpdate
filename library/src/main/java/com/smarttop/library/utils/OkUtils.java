@@ -1,7 +1,7 @@
 package com.smarttop.library.utils;
 
-import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Handler;
@@ -36,7 +36,7 @@ import okhttp3.Response;
  * @describe 文件下载工具类 基于okhttp
  */
 public class OkUtils {
-    private Activity activity;
+    private Context activity;
     private static final int DOWN_UPDATE = 1;
     private static final int DOWN_OVER = 2;
     private TextView textView;
@@ -66,7 +66,7 @@ public class OkUtils {
         }
     };
 
-    public OkUtils(Activity activity, TextView textView) {
+    public OkUtils(Context activity, TextView textView) {
         this.activity = activity;
         this.textView = textView;
         mHandler = new Handler();

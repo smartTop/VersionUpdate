@@ -13,7 +13,10 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.LinearLayout;
 
+import com.smarttop.library.Effectstype;
 import com.smarttop.library.R;
+import com.smarttop.library.effects.BaseEffects;
+import com.smarttop.library.utils.LogUtil;
 
 
 /**
@@ -28,14 +31,17 @@ public class BaseDialog extends DialogFragment implements DialogInterface.OnDism
 
     private View contentView;
     private int resId;
-    private Dialog mDialog;
+    public Dialog mDialog;
     private int _width, _height, _gravity;
     private float dimAmount = -1;
-    private int _animResId;
+    private Effectstype type;
     private DialogInterface.OnDismissListener onDismissListener = null;
 
     private double dialog_width_ratio;
     private double dialog_height_ratio;
+    private int mDuration = -1;
+    private View rootView;
+    private Window window;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -58,12 +64,32 @@ public class BaseDialog extends DialogFragment implements DialogInterface.OnDism
         super.onResume();
 
         //设置参数
-        Window window = mDialog.getWindow();
+        window = mDialog.getWindow();
         WindowManager.LayoutParams lp = window.getAttributes();
-
         // 设置动画效果
-        window.setWindowAnimations(this._animResId == 0 ? R.style.AnimUpInDownOut : this._animResId);
-
+//        if(type==null){
+//            LogUtil.d("数据","type等于空...");
+//            window.setWindowAnimations(R.style.AnimUpInDownOut);
+//        }else{
+//            LogUtil.d("数据","type不等于空...");
+//            //监听对话框开始显示的事件，然后设置动画类型，之后调用start方法将动画效果运用到dialog的contentview中：
+//        if(mDialog!=null){
+//            LogUtil.d("数据","mDialog不等于空...");
+//            mDialog.setOnShowListener(new DialogInterface.OnShowListener() {
+//                @Override
+//                public void onShow(DialogInterface dialogInterface) {
+////                if (type == null) {
+////                    type = Effectstype.Slidetop;
+////                }
+//
+//                    if(type!=null){
+//                        LogUtil.d("数据","type="+type);
+//                        start(type);
+//                    }
+//                }
+//            });
+//        }
+//        }
         //设置宽度
         setWidthRatio(this.dialog_width_ratio == 0 ? 0.85 : this.dialog_width_ratio);
         lp.width = this._width;
@@ -88,8 +114,16 @@ public class BaseDialog extends DialogFragment implements DialogInterface.OnDism
         }
 
         window.setAttributes(lp);
-    }
 
+    }
+    private void start(Effectstype type) {
+        BaseEffects animator = type.getAnimator();
+        LogUtil.d("数据","rootView="+rootView);
+        if (mDuration != -1) {
+            animator.setDuration(Math.abs(mDuration));
+        }
+        animator.start(rootView);
+    }
     @Override
     public void onCancel(DialogInterface dialog) {
         super.onCancel(dialog);
@@ -102,6 +136,30 @@ public class BaseDialog extends DialogFragment implements DialogInterface.OnDism
      */
     public void showDialog(FragmentActivity context) {
         this.show(context.getSupportFragmentManager(), "");
+        // 设置动画效果
+        if(type==null){
+            LogUtil.d("数据","type等于空...");
+            window.setWindowAnimations(R.style.AnimUpInDownOut);
+        }else{
+            LogUtil.d("数据","type不等于空...");
+            //监听对话框开始显示的事件，然后设置动画类型，之后调用start方法将动画效果运用到dialog的contentview中：
+            if(mDialog!=null){
+                LogUtil.d("数据","mDialog不等于空...");
+                mDialog.setOnShowListener(new DialogInterface.OnShowListener() {
+                    @Override
+                    public void onShow(DialogInterface dialogInterface) {
+//                if (type == null) {
+//                    type = Effectstype.Slidetop;
+//                }
+
+                        if(type!=null){
+                            LogUtil.d("数据","type="+type);
+                            start(type);
+                        }
+                    }
+                });
+            }
+        }
     }
 
 
@@ -172,12 +230,13 @@ public class BaseDialog extends DialogFragment implements DialogInterface.OnDism
     /**
      * 设置运行动画
      *
-     * @param animationsResId
      */
-    public void setWindowAnimations(int animationsResId) {
-        this._animResId = animationsResId;
+    public void setWindowAnimations(Effectstype type) {
+        this.type = type;
     }
-
+    public void setRootView(View rootView){
+        this.rootView = rootView;
+    }
     /**
      * 设置Dialog的屏幕占比
      *
