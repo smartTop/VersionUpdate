@@ -105,8 +105,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         .withMessage(obj.versionDesc)   //描述
                         .withButton1Text("暂不更新")     //按钮1
                         .withButton2Text("软件更新")     //按钮2
-                        .setForceUp(2)                  //是否强制更新
-                        .setForceUpFlag(3)              //强制更新的标志
+                        .setForceUp(Integer.parseInt(obj.versionStatus))                  //是否强制更新
+                        .setForceUpFlag(Integer.parseInt(obj.versionStatus))              //强制更新的标志
                         .withButton3Text("软件更新")     //强制更新的文字
                         .withUrl(obj.url)               //更新软件的地址
 //                        .setCustomView(R.layout.custom_view,this) //自定义布局

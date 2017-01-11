@@ -9,68 +9,74 @@
 
     dependencies {
         ...
-      compile 'com.smartTop:version-update:1.0.0'
+    compile 'com.smarttop:android-version-update:1.0.2'
 
 
     }
     
 ## 使用方法
 
-        使用默认布局
-         VersionUpdateDialog.getInstance().initialize(this);
+       需要先请求服务器，获取版本更新的内容以及是否强制更新
+         private void reqData(){
+                       //这里是测试数据，在真正的项目中这些数据都是后台给配置的
+                       VersionUpdateBean versionUpdateBean = new VersionUpdateBean();
+                       versionUpdateBean.versionStatus = "2";//1:不需要更新 2：建议更新 3：强制更新
+       //              versionUpdateBean.versionStatus = "3";//强制更新
+                       versionUpdateBean.versionDesc = "请关注:\n1.smartTop的github\n 2.记得点赞"; //描述
+                       versionUpdateBean.url = "http://jifenshangcheng-test.oss-cn-beijing.aliyuncs.com/app/android/naiping_2016-12-27-01.apk";
+                       setVersionInfo(versionUpdateBean);
+           }
+            public void setVersionInfo(VersionUpdateBean obj) {
+                   int status = -1;
+                   if (obj != null) {
+           //			1:不需要更新 2：建议更新 3：强制更新
+                       if (obj.versionStatus != null) {
+                           status = Integer.parseInt(obj.versionStatus);
+                       }
+                       if (status == 2 || status == 3) {
+                          dialogBuilder=NiftyDialogBuilder.getInstance(MainActivity.this);
+                           dialogBuilder
+                                   .withDuration(700)              //时间
+                                   .withEffect(effect)             //动画
+                                   .withMessage(obj.versionDesc)   //描述
+                                   .withButton1Text("暂不更新")     //按钮1
+                                   .withButton2Text("软件更新")     //按钮2
+                                   .setForceUp(status)                  //是否强制更新
+                                   .setForceUpFlag(status)              //强制更新的标志
+                                   .withButton3Text("软件更新")     //强制更新的文字
+                                   .withUrl(obj.url)               //更新软件的地址
+           //                        .setCustomView(R.layout.custom_view,this) //自定义布局
+                                   .setButton1Click(new View.OnClickListener() {
+                                       @Override
+                                       public void onClick(View v) {
+                                           Toast.makeText(v.getContext(), "i'm btn1", Toast.LENGTH_SHORT).show();
+                                           dialogBuilder.dismiss();
+                                       }
+                                   })
+                                   .setButton2Click(new View.OnClickListener() {
+                                       @Override
+                                       public void onClick(View v) {
+                                           Toast.makeText(v.getContext(), "i'm btn2", Toast.LENGTH_SHORT).show();
+                                           dialogBuilder.updateApp();
+                                       }
+                                   })
+                                   .setButton3Click(new View.OnClickListener(){
 
-      还可以使用自定义布局
+                                       @Override
+                                       public void onClick(View v) {
+                                           Toast.makeText(v.getContext(), "i'm btn3", Toast.LENGTH_SHORT).show();
+                                           dialogBuilder.updateApp();
+                                       }
+                                   })
+                                   .show();
 
-       VersionUpdateDialog instance = VersionUpdateDialog.getInstance();
+                       }
+                   }
 
-        //设置自定义布局
-        instance.setUpdateView(R.layout.dialog_update);//设置自定义布局
+               }
 
-        instance.setDescribe(R.id.tv_dia_version_update);//设置更新的描述
 
-        instance.setCancleOnclick(R.id.btn_cancle);//设置取消监听
 
-        instance.setSureOnclick(R.id.btn_sure);//设置确定监听
-
-        instance.initialize(this);/*版本升级Dialog 【MQ】*/
-
-        弹出对话框
-            弹出对话框之前先请求服务器，获取弹出内容
-              //这里是测试数据，在真正的项目中这些数据都是后台给配置的
-                    VersionUpdateBean versionUpdateBean = new VersionUpdateBean();
-
-                    versionUpdateBean.versionStatus = "2";//1:不需要更新 2：建议更新 3：强制更新
-
-            //      versionUpdateBean.versionStatus = "3";//强制更新
-
-                    versionUpdateBean.versionDesc = "请关注:\n1.smartTop的github\n 2.记得点赞"; //描述
-
-                    versionUpdateBean.url = "http://192.168.5.190:8080/versionupdate.apk";
-
-                    setVersionInfo(versionUpdateBean);
-
-         public void setVersionInfo(VersionUpdateBean obj) {
-
-                int status = -1;
-
-                if (obj != null) {
-
-                //1:不需要更新 2：建议更新 3：强制更新
-                if (obj.versionStatus != null) {
-
-                    status = Integer.parseInt(obj.versionStatus);
-
-                }
-
-                if (status == 2 || status == 3) {
-
-                    VersionUpdateDialog.getInstance().showDialog(obj.url, obj.versionDesc, status);
-
-                }
-        }
-
- 默认布局的动态效果图
-    ![image](https://github.com/smartTop/VersionUpdate/blob/master/screenshots/screenshort3.png)
 
 
 ## 关于我
