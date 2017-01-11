@@ -84,8 +84,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private void reqData(){
                 //这里是测试数据，在真正的项目中这些数据都是后台给配置的
                 VersionUpdateBean versionUpdateBean = new VersionUpdateBean();
-                versionUpdateBean.versionStatus = "2";//1:不需要更新 2：建议更新 3：强制更新
-//              versionUpdateBean.versionStatus = "3";//强制更新
+//                versionUpdateBean.versionStatus = "2";//1:不需要更新 2：建议更新 3：强制更新
+              versionUpdateBean.versionStatus = "3";//强制更新
                 versionUpdateBean.versionDesc = "请关注:\n1.smartTop的github\n 2.记得点赞"; //描述
                 versionUpdateBean.url = "http://jifenshangcheng-test.oss-cn-beijing.aliyuncs.com/app/android/naiping_2016-12-27-01.apk";
                 setVersionInfo(versionUpdateBean);
@@ -109,6 +109,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         .setForceUpFlag(Integer.parseInt(obj.versionStatus))              //强制更新的标志
                         .withButton3Text("软件更新")     //强制更新的文字
                         .withUrl(obj.url)               //更新软件的地址
+                        .isCancelableOnTouchOutside(false)
 //                        .setCustomView(R.layout.custom_view,this) //自定义布局
                         .setButton1Click(new View.OnClickListener() {
                             @Override

@@ -75,7 +75,8 @@
 
                }
 
-
+强制更新效果图
+![image](https://github.com/smartTop/VersionUpdate/blob/master/screenshots/screenshort2.gif)
 
 
 
