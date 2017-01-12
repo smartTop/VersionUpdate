@@ -10,7 +10,7 @@ import android.util.Log;
 import android.widget.TextView;
 
 import com.smarttop.library.callback.CallBackForT;
-import com.smarttop.library.dialog.VersionUpdateDialog;
+import com.smarttop.library.dialog.NiftyDialogBuilder;
 
 import java.io.BufferedOutputStream;
 import java.io.File;
@@ -122,7 +122,7 @@ public class OkUtils {
                         if (numread <= 0) {
                             // 下载完成通知安装
                             mProgressDlg.cancel();
-                            VersionUpdateDialog.getInstance().dismiss();
+                            NiftyDialogBuilder.getInstance(activity).dismiss();
                             mHandler.sendEmptyMessage(DOWN_OVER);
                             break;
                         }
@@ -167,6 +167,7 @@ public class OkUtils {
         intent.setDataAndType(Uri.fromFile(apkFile),
                 "application/vnd.android.package-archive");
         activity.startActivity(intent);
+        NiftyDialogBuilder.getInstance(activity).dismiss();
     }
 
     /**
