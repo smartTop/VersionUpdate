@@ -9,7 +9,7 @@
 
     dependencies {
         ...
-    compile 'com.smarttop:android-version-update:1.0.2'
+    compile 'com.smarttop:android-version-update:1.0.3'
 
 
     }
